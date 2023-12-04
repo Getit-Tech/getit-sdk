@@ -42,12 +42,6 @@ These 4 params are required.
 
 How to track clicks on ads? We are using POST request to generate a redirect url and it looks like this -
 
-Redirect - this is your website.
-Company name - this is the set name when the company is creating
-Banner size - size of the banner
-Banner id - id of the clicked banner
-Redirected from - url of dapp
-
 ```
 const urlToRedirect = redirect +
     "?utm_campaign=" +
@@ -62,3 +56,9 @@ const urlToRedirect = redirect +
     "utm_source=" +
     curUrl,
 ```
+
+1. Redirect - this is your website
+2. Company name - this is the set name when the company is creating 
+3. Banner size - size of the banner 
+4. Slot id - id of the clicked banner 
+5. Redirected from - url of dapp 
