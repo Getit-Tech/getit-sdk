@@ -1,10 +1,14 @@
 {
   "name": "getit-sdk",
   "version": "1.0.0",
-  "description": "Getit sdk plugin",
+  "description": "Getit sdk plugin. Used to provide an ad for your dapp.",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Getit-Tech/getit-sdk"
+  },
   "scripts": {
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run prettier && npm run lint",
@@ -15,13 +19,19 @@
     "prettier": "prettier --write \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx}\"",
     "test": "jest --config jestconfig.json"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "getit",
+    "getit-sdk",
+    "sdk",
+    "ad"
+  ],
   "files": [
     "dist",
     "LICENSE",
     "README.md"
   ],
-  "author": "padrealex",
+  "author": "Getiti-Tech (developer - padrealex)",
   "license": "MIT",
   "devDependencies": {
     "@testing-library/react": "^14.1.2",
