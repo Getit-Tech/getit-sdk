@@ -33,7 +33,7 @@ Then insert the Getit plugin where you need
 
 These 4 params are required.
 
-1. Api key will be given to you by the Getut team, it should be stored in privately.
+1. Api key will be given to you by the Getit team, it should be stored in privately.
 2. walletConnected - here should be passed wallet address in ethereum format. Or nothing.
 3. isMobile - this is the resolution param. If it is true - return mobile size image, else - desktop. It can always be true, if you need an ad to be small.
 4. slotId - current number of banners. If you are using multiple banners the number should increment by +1.
