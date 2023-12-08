@@ -47,7 +47,7 @@ To track clicks on ad banners, we are using POST request and generating a redire
 ```
 const urlToRedirect = redirect +
     "?utm_campaign=" +
-    companyName +
+    campaign_name +
     "&" +
     "utm_content=" +
     (params.isMobile ? EImageSize.MOB : EImageSize.DESK) +
@@ -59,10 +59,10 @@ const urlToRedirect = redirect +
     curUrl,
 ```
 
-1. Redirect - this is the URL of the advertiser's website
-2. Company name - this is the name of the ad campaign the clicked banner belongs to
-3. Banner size - size of the banner the user clicked
-4. Slot id - id of the clicked banner on the publisher's site
-5. Redirected from - URL of the publisher's site
+1. redirect - this is the URL of the advertiser's website
+2. campaign_name - this is the name of the ad campaign the clicked banner belongs to
+3. utm_content - size of the banner the user clicked
+4. slot_id - id of the clicked banner on the publisher's site
+5. utm_source - URL of the publisher's site
 
 This allows us to collect the clicks analytics per publisher as well as per banner within that publisher's site.
