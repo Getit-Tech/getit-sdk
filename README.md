@@ -20,7 +20,7 @@ Once the package is in your project, simply import it from your folder
 import { GetitAdPlugin } from "getit-sdk";
 ```
 
-Then insert the Getit plugin where you need
+Then insert the Getit plugin whereever you see fit. Note that, for maximum compatibility, we now use 728x90 banners for desktop and 270x90 for mobile screens.
 
 ```
 <GetitAdPlugin
@@ -31,16 +31,18 @@ Then insert the Getit plugin where you need
 />
 ```
 
-These 4 params are required.
+These 4 params are required:
 
-1. Api key will be given to you by the Getit team, it should be stored in privately.
-2. walletConnected - here should be passed wallet address in ethereum format. Or nothing.
-3. isMobile - this is the resolution param. If it is true - return mobile size image, else - desktop. It can always be true, if you need an ad to be small.
-4. slotId - current number of banners. If you are using multiple banners the number should increment by +1.
+1. apiKey - will be given to you by the Getit team, it should be stored in privately.
+2. walletConnected - here you should pass the connected wallet's address in the Ethereum format. Or nothing if the wallet is not connected.
+3. isMobile - this is the resolution param. If it is true - return mobile size image, else - desktop. It can always be true, if you need an ad to always display in the mobile format, regardless of the actual user's screen size.
+4. slotId - the enumerator for the banner. If you are using multiple banners the number should be incremented by +1 for each next banner.
 
-## Information for ad owners.
+That's it. Once the plugin is installed, and you are activated within our system, you will start receiving ads to display to each user visiting your site.
 
-How to track clicks on ads? We are using POST request to generate a redirect url and it looks like this -
+## Clicks tracking
+
+To track clicks on ad banners, we are using POST request and generating a redirect URL:
 
 ```
 const urlToRedirect = redirect +
@@ -57,8 +59,10 @@ const urlToRedirect = redirect +
     curUrl,
 ```
 
-1. Redirect - this is your website
-2. Company name - this is the set name when the company is creating 
-3. Banner size - size of the banner 
-4. Slot id - id of the clicked banner 
-5. Redirected from - url of dapp 
+1. Redirect - this is the URL of the advertiser's website
+2. Company name - this is the name of the ad campaign the clicked banner belongs to
+3. Banner size - size of the banner the user clicked
+4. Slot id - id of the clicked banner on the publisher's site
+5. Redirected from - URL of the publisher's site
+
+This allows us to collect the clicks analytics per publisher as well as per banner within that publisher's site.
