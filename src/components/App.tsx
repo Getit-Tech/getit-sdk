@@ -48,20 +48,20 @@ const getImage = async (params: IProps): Promise<IGetAd | void> => {
   return data.data as IGetAd;
 };
 
-const generateUrl = async (params: IProps, company_uuid: string, companyName: string, redirect: string) => {
+const generateUrl = async (params: IProps, campaign_uuid: string, campaign_name: string, redirect: string) => {
   const curUrl: string = window.location.href;
   const ts: string = Date.now().toString();
   const api_key: string = encryptApi(params.apiKey, 26);
   await axios.post("https://v1.getittech.io/v1/analytics/utm_processing", {
     api_key,
     timestamp: ts,
-    company_uuid,
+    campaign_uuid,
   });
 
   window.open(
     redirect +
       "?utm_campaign=" +
-      companyName +
+      campaign_name +
       "&" +
       "utm_content=" +
       (params.isMobile ? EImageSize.MOB : EImageSize.DESK) +
