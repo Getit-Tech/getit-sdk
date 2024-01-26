@@ -54,7 +54,7 @@ const generateUrl = async (params: IProps, campaign_uuid: string, campaign_name:
   const curUrl: string = window.location.href;
   const ts: string = Date.now().toString();
   const api_key: string = encryptApi(params.apiKey, 26);
-  await axios.post("https://v1.getittech.io/v1/analytics/utm_processing", {
+  await axios.post("https://v1.getittech.io/v1/utm/event", {
     api_key,
     timestamp: ts,
     campaign_uuid,
