@@ -44,6 +44,8 @@ const getImage = async (params: IProps): Promise<IGetAd | void> => {
     timestamp: ts,
     api_key,
     image_type: params.isMobile ? EImageTypes.MOB : EImageTypes.DESK,
+    page_name: window.location.host + window.location.pathname,
+    slot_id: params.slotId
   });
   return data.data as IGetAd;
 };
@@ -56,6 +58,9 @@ const generateUrl = async (params: IProps, campaign_uuid: string, campaign_name:
     api_key,
     timestamp: ts,
     campaign_uuid,
+    event_type: "CLICK",
+    page_name: window.location.host + window.location.pathname,
+    slot_id:  params.slotId
   });
 
   window.open(
