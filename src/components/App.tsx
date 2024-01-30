@@ -66,17 +66,17 @@ const generateUrl = async (params: IProps, campaign_uuid: string, campaign_name:
 
   window.open(
     redirect +
-    "?utm_campaign=" +
-    campaign_name +
-    "&" +
-    "utm_content=" +
-    (params.isMobile ? EImageSize.MOB : EImageSize.DESK) +
-    "&" +
-    "slot_id=" +
-    params.slotId +
-    "&" +
-    "utm_source=" +
-    curUrl,
+      "?utm_campaign=" +
+      campaign_name +
+      "&" +
+      "utm_content=" +
+      (params.isMobile ? EImageSize.MOB : EImageSize.DESK) +
+      "&" +
+      "slot_id=" +
+      params.slotId +
+      "&" +
+      "utm_source=" +
+      curUrl,
     "_blank",
   );
 };
