@@ -6,6 +6,7 @@ interface IProps {
   walletConnected: string;
   isMobile: boolean;
   slotId: string;
+  height?: number;
 }
 
 interface IGetAd {
@@ -65,17 +66,17 @@ const generateUrl = async (params: IProps, campaign_uuid: string, campaign_name:
 
   window.open(
     redirect +
-      "?utm_campaign=" +
-      campaign_name +
-      "&" +
-      "utm_content=" +
-      (params.isMobile ? EImageSize.MOB : EImageSize.DESK) +
-      "&" +
-      "slot_id=" +
-      params.slotId +
-      "&" +
-      "utm_source=" +
-      curUrl,
+    "?utm_campaign=" +
+    campaign_name +
+    "&" +
+    "utm_content=" +
+    (params.isMobile ? EImageSize.MOB : EImageSize.DESK) +
+    "&" +
+    "slot_id=" +
+    params.slotId +
+    "&" +
+    "utm_source=" +
+    curUrl,
     "_blank",
   );
 };
@@ -110,7 +111,7 @@ const GetitAdPlugin = (props: IProps) => {
         marginLeft: "auto",
         marginRight: "auto",
         display: "flex",
-        height: "90px",
+        height: !isNaN(props.height as number) ? props?.height?.toString() + "px" : "90px",
         width: `${props.isMobile ? EImageSize.MOB + "px" : EImageSize.DESK + "px"}`,
       }}
     >
