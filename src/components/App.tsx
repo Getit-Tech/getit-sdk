@@ -36,7 +36,7 @@ const encryptApi = (str: string, key: number): string => {
   return encrypted;
 };
 
-const getImage = async (params: IProps): Promise<IGetAd | void> => {
+const getImage = async (params: IProps, isMobile: boolean): Promise<IGetAd | void> => {
   const ts: string = Date.now().toString();
   const api_key: string = encryptApi(params.apiKey, 26);
 
@@ -44,7 +44,7 @@ const getImage = async (params: IProps): Promise<IGetAd | void> => {
     wallet_address: params.walletConnected,
     timestamp: ts,
     api_key,
-    image_type: params.isMobile ? EImageTypes.MOB : EImageTypes.DESK,
+    image_type: isMobile ? EImageTypes.MOB : EImageTypes.DESK,
     page_name: window.location.host + window.location.pathname,
     slot_id: params.slotId,
   });
@@ -81,6 +81,29 @@ const generateUrl = async (params: IProps, campaign_uuid: string, campaign_name:
   );
 };
 
+const OS = {
+  win: "Win64",
+  iPhone: "iPhone",
+  android: "Android",
+};
+
+const getUserDevice = () => {
+  const ua = navigator.userAgent;
+
+  if (ua.toLowerCase().includes(OS.iPhone.toLowerCase()) || ua.toLowerCase().includes(OS.android.toLowerCase())) {
+    console.log(OS.iPhone)
+    return true;
+  }
+
+  return false;
+};
+
+const getCountry = async () => {
+  const locationData = await axios.get("https://ipapi.co/json/");
+  const countryIso2 = locationData.data.country;
+  return countryIso2;
+};
+
 const GetitAdPlugin = (props: IProps) => {
   const [useImageUrl, setImageUrl] = useState<string>("");
   const [useRedirect, setRedirect] = useState<string>("");
@@ -89,7 +112,8 @@ const GetitAdPlugin = (props: IProps) => {
 
   useEffect(() => {
     const init = async (): Promise<void> => {
-      const data: IGetAd | void = await getImage(props);
+      const isMobile = getUserDevice()
+      const data: IGetAd | void = await getImage(props, isMobile);
       if (!data) {
         return;
       }
@@ -97,6 +121,7 @@ const GetitAdPlugin = (props: IProps) => {
       setRedirect(data.redirect_link);
       setCompany(data.campaign_uuid);
       setCompanyName(data.campaign_name);
+      getCountry()
     };
 
     init();
