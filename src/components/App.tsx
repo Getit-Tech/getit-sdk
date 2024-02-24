@@ -41,7 +41,7 @@ const getImage = async (params: IProps, isMobile: boolean): Promise<IGetAd | voi
   const ts: string = Date.now().toString();
   const api_key: string = encryptApi(params.apiKey, 26);
 
-  const data = await axios.post("https://v1.getittech.io/v1/ads/get_ad", {
+  const data = await axios.post("https://stg.getittech.io/v1/ads/get_ad", {
     wallet_address: params.walletConnected,
     timestamp: ts,
     api_key,
@@ -56,7 +56,7 @@ const generateUrl = async (params: IProps, campaign_uuid: string, campaign_name:
   const curUrl: string = window.location.href;
   const ts: string = Date.now().toString();
   const api_key: string = encryptApi(params.apiKey, 26);
-  await axios.post("https://v1.getittech.io/v1/utm/event", {
+  await axios.post("https://stg.getittech.io/v1/utm/event", {
     api_key,
     timestamp: ts,
     campaign_uuid,
