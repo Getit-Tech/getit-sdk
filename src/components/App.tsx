@@ -66,6 +66,7 @@ const generateUrl = async (
     api_key,
     timestamp: ts,
     campaign_uuid,
+    wallet_address: params.walletConnected,
     event_type: "CLICK",
     page_name: window.location.host + window.location.pathname,
     slot_id: params.slotId,
