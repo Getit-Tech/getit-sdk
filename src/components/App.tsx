@@ -52,7 +52,13 @@ const getImage = async (params: IProps, isMobile: boolean): Promise<IGetAd | voi
   return data.data as IGetAd;
 };
 
-const generateUrl = async (params: IProps, campaign_uuid: string, campaign_name: string, redirect: string, banner_uuid: string) => {
+const generateUrl = async (
+  params: IProps,
+  campaign_uuid: string,
+  campaign_name: string,
+  redirect: string,
+  banner_uuid: string,
+) => {
   const curUrl: string = window.location.href;
   const ts: string = Date.now().toString();
   const api_key: string = encryptApi(params.apiKey, 26);
@@ -63,22 +69,22 @@ const generateUrl = async (params: IProps, campaign_uuid: string, campaign_name:
     event_type: "CLICK",
     page_name: window.location.host + window.location.pathname,
     slot_id: params.slotId,
-    banner_uuid: banner_uuid ? banner_uuid : '0000-0000-0000-0000'
+    banner_uuid: banner_uuid ? banner_uuid : "0000-0000-0000-0000",
   });
 
   window.open(
     redirect +
-    "?utm_campaign=" +
-    campaign_name +
-    "&" +
-    "utm_content=" +
-    (params.isMobile ? EImageSize.MOB : EImageSize.DESK) +
-    "&" +
-    "slot_id=" +
-    params.slotId +
-    "&" +
-    "utm_source=" +
-    curUrl,
+      "?utm_campaign=" +
+      campaign_name +
+      "&" +
+      "utm_content=" +
+      (params.isMobile ? EImageSize.MOB : EImageSize.DESK) +
+      "&" +
+      "slot_id=" +
+      params.slotId +
+      "&" +
+      "utm_source=" +
+      curUrl,
     "_blank",
   );
 };
@@ -93,7 +99,7 @@ const getUserDevice = () => {
   const ua = navigator.userAgent;
 
   if (ua.toLowerCase().includes(OS.iPhone.toLowerCase()) || ua.toLowerCase().includes(OS.android.toLowerCase())) {
-    console.log(OS.iPhone)
+    console.log(OS.iPhone);
     return true;
   }
 
@@ -111,11 +117,11 @@ const GetitAdPlugin = (props: IProps) => {
   const [useRedirect, setRedirect] = useState<string>("");
   const [useCompany, setCompany] = useState<string>("");
   const [useCompanyName, setCompanyName] = useState<string>("");
-  const [bannerUUID, setBannerUUID] = useState('0000-0000-0000-0000');
+  const [bannerUUID, setBannerUUID] = useState("0000-0000-0000-0000");
 
   useEffect(() => {
     const init = async (): Promise<void> => {
-      const isMobile = getUserDevice()
+      const isMobile = getUserDevice();
       const data: IGetAd | void = await getImage(props, isMobile);
       if (!data) {
         return;
@@ -124,8 +130,8 @@ const GetitAdPlugin = (props: IProps) => {
       setRedirect(data.redirect_link);
       setCompany(data.campaign_uuid);
       setCompanyName(data.campaign_name);
-      setBannerUUID(data.banner_uuid)
-      getCountry()
+      setBannerUUID(data.banner_uuid);
+      getCountry();
     };
 
     init();
@@ -154,7 +160,10 @@ const GetitAdPlugin = (props: IProps) => {
           borderRadius: "10px",
         }}
       >
-        <a style={{ cursor: 'pointer' }} onClick={async () => await generateUrl(props, useCompany, useCompanyName, useRedirect, bannerUUID)}>
+        <a
+          style={{ cursor: "pointer" }}
+          onClick={async () => await generateUrl(props, useCompany, useCompanyName, useRedirect, bannerUUID)}
+        >
           <img
             style={{
               maxWidth: "100%",
