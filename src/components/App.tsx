@@ -65,6 +65,7 @@ const generateUrl = async (
   await axios.post("https://v1.getittech.io/v1/utm/event", {
     api_key,
     timestamp: ts,
+    wallet_address: params.walletConnected,
     campaign_uuid,
     event_type: "CLICK",
     page_name: window.location.host + window.location.pathname,
