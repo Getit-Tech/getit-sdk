@@ -52,11 +52,7 @@ const getImage = async (params: IProps, isMobile: boolean): Promise<IGetAd | voi
   return data.data as IGetAd;
 };
 
-const generateUrl = async (
-  params: IProps,
-  campaign_uuid: string,
-  banner_uuid: string,
-) => {
+const generateUrl = async (params: IProps, campaign_uuid: string, banner_uuid: string) => {
   const ts: string = Date.now().toString();
   const api_key: string = encryptApi(params.apiKey, 26);
   await axios.post("https://v1.getittech.io/v1/utm/event", {
@@ -158,7 +154,8 @@ const GetitAdPlugin = (props: IProps) => {
             "utm_source=" +
             window.location.href
           }
-          target="_blank"
+          target='_blank'
+          rel="noreferrer"
           onClick={async () => await generateUrl(props, useCompany, bannerUUID)}
         >
           <img
