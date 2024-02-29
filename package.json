@@ -1,6 +1,6 @@
 {
   "name": "getit-sdk",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Getit sdk plugin. Used to provide an ad for your dapp.",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

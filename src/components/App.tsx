@@ -93,8 +93,8 @@ const getCountry = async () => {
 const GetitAdPlugin = (props: IProps) => {
   const [useImageUrl, setImageUrl] = useState<string>("");
   const [useRedirect, setRedirect] = useState<string>("");
-  const [useCompany, setCompany] = useState<string>("");
-  const [useCompanyName, setCompanyName] = useState<string>("");
+  const [usecampaign, setcampaign] = useState<string>("");
+  const [usecampaignName, setcampaignName] = useState<string>("");
   const [bannerUUID, setBannerUUID] = useState("0000-0000-0000-0000");
 
   useEffect(() => {
@@ -106,8 +106,8 @@ const GetitAdPlugin = (props: IProps) => {
       }
       setImageUrl(data.image_url);
       setRedirect(data.redirect_link);
-      setCompany(data.campaign_uuid);
-      setCompanyName(data.campaign_name);
+      setcampaign(data.campaign_uuid);
+      setcampaignName(data.campaign_name);
       setBannerUUID(data.banner_uuid);
       getCountry();
     };
@@ -143,7 +143,7 @@ const GetitAdPlugin = (props: IProps) => {
           href={
             useRedirect +
             "?utm_campaign=" +
-            useCompanyName +
+            usecampaignName +
             "&" +
             "utm_content=" +
             (props.isMobile ? "270" : "728") +
@@ -155,8 +155,8 @@ const GetitAdPlugin = (props: IProps) => {
             window.location.href
           }
           target='_blank'
-          rel="noreferrer"
-          onClick={async () => await generateUrl(props, useCompany, bannerUUID)}
+          rel='noreferrer'
+          onClick={async () => await generateUrl(props, usecampaign, bannerUUID)}
         >
           <img
             style={{
