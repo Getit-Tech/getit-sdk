@@ -47,7 +47,7 @@ const getImage = async (params: IProps, isMobile: boolean): Promise<IGetAd | voi
     timestamp: ts,
     api_key,
     image_type: isMobile ? EImageTypes.MOB : EImageTypes.DESK,
-    page_name: 'getit',
+    page_name: "getit",
     slot_id: params.slotId,
   });
   return data.data as IGetAd;
@@ -62,7 +62,7 @@ const generateUrl = async (params: IProps, campaign_uuid: string, banner_uuid: s
     campaign_uuid,
     wallet_address: params.walletConnected,
     event_type: "CLICK",
-    page_name: 'getit',
+    page_name: "getit",
     slot_id: params.slotId,
     banner_uuid: banner_uuid ? banner_uuid : "0000-0000-0000-0000",
   });
@@ -97,8 +97,8 @@ const GetitAdPlugin = (props: IProps) => {
   const [useCampaign, setCampaign] = useState<string>("");
   const [useCampaignName, setCampaignName] = useState<string>("");
   const [bannerUUID, setBannerUUID] = useState("0000-0000-0000-0000");
-  const [bannerName, setBannerName] = useState('');
-  const [height, setHeight] = useState('0');
+  const [bannerName, setBannerName] = useState("");
+  const [height, setHeight] = useState("0");
 
   useEffect(() => {
     const init = async (): Promise<void> => {
@@ -107,7 +107,7 @@ const GetitAdPlugin = (props: IProps) => {
       if (!data) {
         return;
       }
-      setHeight('90')
+      setHeight("90");
       setImageUrl(data.image_url);
       setRedirect(data.redirect_link);
       setCampaign(data.campaign_uuid);
@@ -129,7 +129,7 @@ const GetitAdPlugin = (props: IProps) => {
         marginLeft: "auto",
         marginRight: "auto",
         display: "flex",
-        height: height + 'px',
+        height: height + "px",
         width: `${props.isMobile ? EImageSize.MOB + "px" : EImageSize.DESK + "px"}`,
       }}
     >
@@ -151,11 +151,10 @@ const GetitAdPlugin = (props: IProps) => {
             useCampaignName +
             "&" +
             "utm_content=" +
-            bannerName
-            +
+            bannerName +
             "&" +
             "utm_source=" +
-            'getit'
+            "getit"
           }
           target='_blank'
           rel='noreferrer'
