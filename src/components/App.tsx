@@ -15,6 +15,7 @@ interface IGetAd {
   campaign_uuid: string;
   campaign_name: string;
   banner_uuid: string;
+  banner_name: string;
 }
 
 enum EImageTypes {
@@ -46,7 +47,7 @@ const getImage = async (params: IProps, isMobile: boolean): Promise<IGetAd | voi
     timestamp: ts,
     api_key,
     image_type: isMobile ? EImageTypes.MOB : EImageTypes.DESK,
-    page_name: window.location.host + window.location.pathname,
+    page_name: 'getit',
     slot_id: params.slotId,
   });
   return data.data as IGetAd;
@@ -61,7 +62,7 @@ const generateUrl = async (params: IProps, campaign_uuid: string, banner_uuid: s
     campaign_uuid,
     wallet_address: params.walletConnected,
     event_type: "CLICK",
-    page_name: window.location.host + window.location.pathname,
+    page_name: 'getit',
     slot_id: params.slotId,
     banner_uuid: banner_uuid ? banner_uuid : "0000-0000-0000-0000",
   });
@@ -93,9 +94,11 @@ const getCountry = async () => {
 const GetitAdPlugin = (props: IProps) => {
   const [useImageUrl, setImageUrl] = useState<string>("");
   const [useRedirect, setRedirect] = useState<string>("");
-  const [usecampaign, setcampaign] = useState<string>("");
-  const [usecampaignName, setcampaignName] = useState<string>("");
+  const [useCampaign, setCampaign] = useState<string>("");
+  const [useCampaignName, setCampaignName] = useState<string>("");
   const [bannerUUID, setBannerUUID] = useState("0000-0000-0000-0000");
+  const [bannerName, setBannerName] = useState('');
+  const [height, setHeight] = useState('0');
 
   useEffect(() => {
     const init = async (): Promise<void> => {
@@ -104,11 +107,13 @@ const GetitAdPlugin = (props: IProps) => {
       if (!data) {
         return;
       }
+      setHeight('90')
       setImageUrl(data.image_url);
       setRedirect(data.redirect_link);
-      setcampaign(data.campaign_uuid);
-      setcampaignName(data.campaign_name);
+      setCampaign(data.campaign_uuid);
+      setCampaignName(data.campaign_name);
       setBannerUUID(data.banner_uuid);
+      setBannerName(data.banner_name);
       getCountry();
     };
 
@@ -124,7 +129,7 @@ const GetitAdPlugin = (props: IProps) => {
         marginLeft: "auto",
         marginRight: "auto",
         display: "flex",
-        height: !isNaN(props.height as number) ? props?.height?.toString() + "px" : "90px",
+        height: height + 'px',
         width: `${props.isMobile ? EImageSize.MOB + "px" : EImageSize.DESK + "px"}`,
       }}
     >
@@ -143,20 +148,18 @@ const GetitAdPlugin = (props: IProps) => {
           href={
             useRedirect +
             "?utm_campaign=" +
-            usecampaignName +
+            useCampaignName +
             "&" +
             "utm_content=" +
-            (props.isMobile ? "270" : "728") +
-            "&" +
-            "slot_id=" +
-            props.slotId +
+            bannerName
+            +
             "&" +
             "utm_source=" +
-            window.location.href
+            'getit'
           }
           target='_blank'
           rel='noreferrer'
-          onClick={async () => await generateUrl(props, usecampaign, bannerUUID)}
+          onClick={async () => await generateUrl(props, useCampaign, bannerUUID)}
         >
           <img
             style={{
