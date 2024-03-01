@@ -50,18 +50,15 @@ const urlToRedirect = redirect +
     campaign_name +
     "&" +
     "utm_content=" +
-    (params.isMobile ? EImageSize.MOB : EImageSize.DESK) +
-    "&" +
-    "slot_id=" +
-    params.slotId +
+    bannerName +
     "&" +
     "utm_source=" +
-    curUrl,
+    "getit",
 ```
 
 1. ```redirect``` - this is the URL of the advertiser's website
 2. ```campaign_name``` - this is the name of the ad campaign the clicked banner belongs to
-3. ```utm_content``` - size of the banner the user clicked
+3. ```utm_content``` - name of the banner a user clicked
 4. ```slot_id``` - id of the clicked banner on the publisher's site
 5. ```utm_source``` - URL of the publisher's site
 
