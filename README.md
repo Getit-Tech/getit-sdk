@@ -59,7 +59,6 @@ const urlToRedirect = redirect +
 1. ```redirect``` - this is the URL of the advertiser's website
 2. ```campaign_name``` - this is the name of the ad campaign the clicked banner belongs to
 3. ```utm_content``` - name of the banner a user clicked
-4. ```slot_id``` - id of the clicked banner on the publisher's site
-5. ```utm_source``` - URL of the publisher's site
+4. ```utm_source``` - URL of the publisher's site
 
 This allows us to collect the clicks analytics per publisher as well as per banner within that publisher's site.
