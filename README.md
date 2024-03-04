@@ -35,7 +35,7 @@ These 4 params are required:
 
 1. ```apiKey``` - will be given to you by the Getit team, it should be stored in privately.
 2. ```walletConnected``` - here you should pass the connected wallet's address in the Ethereum format. Or nothing if the wallet is not connected.
-3. ```isMobile``` - this is the resolution param. If it is true - return mobile size image, else - desktop. It can always be true, if you need an ad to always display in the mobile format, regardless of the actual user's screen size.
+3. ```isMobile``` - this is the resolution param. If set to true, the ad request will always return a banner of the mobile format, regardless of the actual user's device type. Can be useful if the mobile banner formats fit your desktop UI better.
 4. ```slotId``` - the enumerator for the banner. If you are using multiple banners the number should be incremented by +1 for each next banner.
 
 That's it. Once the plugin is installed, and you are activated within our system, you will start receiving ads to display to each user visiting your site.
@@ -59,6 +59,6 @@ const urlToRedirect = redirect +
 1. ```redirect``` - this is the URL of the advertiser's website
 2. ```campaign_name``` - this is the name of the ad campaign the clicked banner belongs to
 3. ```utm_content``` - name of the banner a user clicked
-4. ```utm_source``` - URL of the publisher's site
+4. ```utm_source``` - Getit as the ad network which the ad is associated with
 
-This allows us to collect the clicks analytics per publisher as well as per banner within that publisher's site.
+This allows our advertisers to measure the performance of their campaigns with us better and with more details.
