@@ -35,10 +35,13 @@ These 4 params are required:
 
 1. ```apiKey``` - will be given to you by the Getit team, it should be stored in privately.
 2. ```walletConnected``` - here you should pass the connected wallet's address in the Ethereum format. Or nothing if the wallet is not connected.
-3. ```isMobile``` - this is the resolution param. If set to true, the ad request will always return a banner of the mobile format, regardless of the actual user's device type. Can be useful if the mobile banner formats fit your desktop UI better.
+3. ```isMobile``` - this is optional param. If set to true, the ad request will always return a banner of the mobile format, regardless of the actual user's device type. Can be useful if the mobile banner formats fit your desktop UI better.
 4. ```slotId``` - the enumerator for the banner. If you are using multiple banners the number should be incremented by +1 for each next banner.
 
 That's it. Once the plugin is installed, and you are activated within our system, you will start receiving ads to display to each user visiting your site.
+
+Important!
+If something went wrong while getting ad, ad container height automatically will be set to 0, so be aware of this.
 
 ## Clicks tracking
 
