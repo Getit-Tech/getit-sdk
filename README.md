@@ -40,9 +40,6 @@ These 4 params are required:
 
 That's it. Once the plugin is installed, and you are activated within our system, you will start receiving ads to display to each user visiting your site.
 
-Important!
-If something went wrong while getting ad, ad container height automatically will be set to 0, so be aware of this.
-
 ## Clicks tracking
 
 To track clicks on ad banners, we are using POST request and generating a redirect URL:
