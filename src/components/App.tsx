@@ -18,6 +18,12 @@ interface IGetAd {
   banner_name: string;
 }
 
+declare global {
+  interface Window {
+    ethereum?: any;
+  }
+}
+
 enum EImageTypes {
   DESK = "DESKTOP",
   MOB = "MOBILE",
@@ -42,8 +48,15 @@ const getImage = async (params: IProps, isMobile: boolean): Promise<IGetAd | voi
   const ts: string = Date.now().toString();
   const api_key: string = encryptApi(params.apiKey, 26);
 
+  let walletMetamask = [];
+  if (window.ethereum) {
+    walletMetamask = await window.ethereum.request({
+      method: "eth_accounts",
+    });
+  }
+
   const data = await axios.post("https://v1.getittech.io/v1/ads/get_ad", {
-    wallet_address: params.walletConnected,
+    wallet_address: params.walletConnected ? params.walletConnected : walletMetamask[0] ? walletMetamask[0] : "",
     timestamp: ts,
     api_key,
     image_type: isMobile ? EImageTypes.MOB : EImageTypes.DESK,
@@ -56,11 +69,19 @@ const getImage = async (params: IProps, isMobile: boolean): Promise<IGetAd | voi
 const generateUrl = async (params: IProps, campaign_uuid: string, banner_uuid: string) => {
   const ts: string = Date.now().toString();
   const api_key: string = encryptApi(params.apiKey, 26);
+
+  let walletMetamask = [];
+  if (window.ethereum) {
+    walletMetamask = await window.ethereum.request({
+      method: "eth_accounts",
+    });
+  }
+
   await axios.post("https://v1.getittech.io/v1/utm/event", {
     api_key,
     timestamp: ts,
     campaign_uuid,
-    wallet_address: params.walletConnected,
+    wallet_address: params.walletConnected ? params.walletConnected : walletMetamask[0] ? walletMetamask[0] : "",
     event_type: "CLICK",
     page_name: window.location.pathname,
     slot_id: params.slotId,
